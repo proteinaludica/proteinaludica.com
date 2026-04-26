@@ -236,7 +236,7 @@ Organizadas em 4 blocos:
 
 | Ficheiro | Estado (21 Abril 2026) | Notas |
 |---|---|---|
-| `index.html` | **Alinhado v2.1** | Vocabulário "secretário digital", pirâmide dupla (Individual 0/19/49/290€ + Equipa 990€), paleta Laurissilva, FAQ 6 perguntas, Rede 2027 |
+| `index.html` | **Alinhado v2.1 — revisão de tratamento pendente para v2.3** | Vocabulário "secretário digital", pirâmide dupla (Individual 0/19/49/290€ + Equipa 990€), paleta Laurissilva, FAQ 6 perguntas, Rede 2027. A passagem para 3.ª p.s. impessoal ainda não foi aplicada. |
 | `wizard-criar.html` | **Alinhado v2.3** | 7 passos navegáveis (0-6), tradutor inicial, escolha de plataforma com quiz, detector RGPD, paywall diferenciado por tier, floating help para Assistido 290€. Auditoria de jargão (Abril 2026) e reescrita em 3.ª pessoa singular impessoal. |
 | `17-seccoes-exemplo.html` | **Alinhado** | Exemplo completo Dr. Roberto IA (Ponta Delgada, código `med46316`, 8 etapas onboarding, red lines), TOC sticky, componentes do "agente completo" |
 
@@ -382,7 +382,8 @@ Os chats no Claude podem desaparecer por qualquer motivo técnico; a pasta local
   - Antropomorfismos a software: *"vive dentro de"* → *"funciona dentro de"*; *"onde quer que viva"* → *"em qual destas ferramentas vai usar"*
   - Anglicismos traduzidos: *"setup"* → *"configurar"*; *"Conversation Starters"* → *"sugestões prontas para começar a conversa"*; *"self-service"* → *"faz por conta própria"*; *"output"* → *"resultado"*; *"demo"* → *"demonstração"*
   - Verbos técnicos disfarçados: *"integra"* → *"liga ao"*; *"em tempo real"* → *"à medida que escreve"*; *"automaticamente"* → *"sem ser preciso pedir"*; *"detecta inconsistências"* → *"avisa quando uma resposta contradiz outra"*
-  - 13 substituições de tratamento ("o senhor" → 3.ª p.s. impessoal)
+  - 14 substituições de tratamento ("o senhor" → 3.ª p.s. impessoal), incluindo correcção pré-AO *"direto"* → *"directo"* na linha 1411
+- **Revisão de código** posterior detectou e corrigiu mais 6 pontos: bloqueador na linha 1212 (*"O senhor só ajusta..."* tinha escapado às duas auditorias anteriores), concordância flutuante de *"Boa para conversas..."* → *"Indicada para…"* (linhas 1171 e 1630), frase incompleta *"acompanha enquanto preenche"* → *"acompanha o preenchimento das 17 perguntas"* (linha 1325), texto vago em *// PÚBLICO* tornado específico (linha 1298)
 - `decisoes-proteina-ludica.md` ganha secção "Registo de tratamento (regra escrita)" com tabela de formas e exemplos concretos antes/depois
 - Adicionado a "Decisões expressamente rejeitadas": tratamento por *"você"* ou *"o senhor"* em escrita
 - **Pendente** (corrigir mais tarde): bloco do tier Assistido onde o Roberto fala em 1.ª pessoa (*"comigo"*) — aceitável a curto prazo, a rever na próxima passagem
