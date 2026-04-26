@@ -1,7 +1,7 @@
-# Proteína Lúdica — Registo de Decisões v2.2
+# Proteína Lúdica — Registo de Decisões v2.3
 
 > Memória viva do projecto. Anexar a novos chats para arranque sem ruído.
-> **Última actualização:** 21 Abril 2026 — sessão de regeneração dos 3 HTMLs alinhados com v2.1 e definição do fluxo de trabalho no Claude (arquivar vs apagar, convenção de nomes, rotina de sessão).
+> **Última actualização:** 26 Abril 2026 — auditoria de jargão e inversão da regra de tratamento ("você" e "o senhor" passam a estar reservados ao oral; em escrita pública aplica-se 3.ª pessoa singular impessoal).
 >
 > **Este ficheiro substitui o `decisoes-proteina-ludica.md` anterior.**
 
@@ -43,7 +43,33 @@ Testes com médicos amigos em Abril 2026 mostraram que vocabulário técnico **n
 | "17 secções" | "17 perguntas" |
 | "template" | "modelo pronto" |
 
-**Tom público:** explicação a alguém de 70 anos. Frases curtas. Tratamento por **"você"** e **"o senhor"**. Palavras de rua. Metáforas concretas.
+### Registo de tratamento (regra escrita)
+
+**Em escrita pública usa-se 3.ª pessoa singular impessoal.** É o registo formal padrão dos sites institucionais portugueses (gov.pt, CGD, Ordem dos Médicos, IEFP, formulários do IRN). Pronome de 2.ª pessoa **omitido**; verbo na 3.ª p.s. fala directamente ao leitor sem o nomear.
+
+| Forma | Uso |
+|---|---|
+| Imperativo singular | acções: *"indique"*, *"preencha"*, *"seleccione"*, *"carregue"* |
+| *"deverá"* + infinitivo | obrigações |
+| *"pode"* + infinitivo | opções |
+| *"se pretender"*, *"caso"*, *"para"* | condicionais |
+| Possessivos *"seu / sua"* | neutros de género — usar livremente |
+
+**Não usar em escrita pública:**
+- *"você"* — soa brasileiro em PT-PT escrito (é forma oral)
+- *"o senhor" / "a senhora"* — antiquado e marcado em género
+- *"tu"* — informal demais para o registo
+
+**Exemplos concretos:**
+- ❌ *"Você pode parar e voltar mais tarde"* → ✅ *"Pode parar e voltar mais tarde"*
+- ❌ *"O senhor já usa esta ferramenta?"* → ✅ *"Já usa esta ferramenta?"*
+- ❌ *"para o senhor não ficar parado"* → ✅ *"para não ficar parado"*
+- ❌ *"sem o senhor ter de pedir"* → ✅ *"sem ser preciso pedir"*
+- ❌ *"uma IA conversa consigo"* → ✅ *"uma IA acompanha o preenchimento"*
+
+**Tom público:** explicação a alguém de 70 anos. Frases curtas. Palavras de rua. Metáforas concretas. Mas tudo isto **em escrita formal portuguesa** — nunca em registo oral disfarçado.
+
+**Excepção — primeira pessoa do Roberto:** quando o Roberto Gouveia fala em nome próprio nos materiais ("conversar 1 hora comigo", "Pedir chamada comigo"), usa-se a 1.ª pessoa naturalmente. Não é tratamento do leitor.
 
 **Tagline central:** *"Um secretário digital que escreve por si."*
 
@@ -211,7 +237,7 @@ Organizadas em 4 blocos:
 | Ficheiro | Estado (21 Abril 2026) | Notas |
 |---|---|---|
 | `index.html` | **Alinhado v2.1** | Vocabulário "secretário digital", pirâmide dupla (Individual 0/19/49/290€ + Equipa 990€), paleta Laurissilva, FAQ 6 perguntas, Rede 2027 |
-| `wizard-criar.html` | **Alinhado v2.1** | 7 passos navegáveis (0-6), tradutor inicial, escolha de plataforma com quiz, detector RGPD, paywall diferenciado por tier, floating help para Assistido 290€ |
+| `wizard-criar.html` | **Alinhado v2.3** | 7 passos navegáveis (0-6), tradutor inicial, escolha de plataforma com quiz, detector RGPD, paywall diferenciado por tier, floating help para Assistido 290€. Auditoria de jargão (Abril 2026) e reescrita em 3.ª pessoa singular impessoal. |
 | `17-seccoes-exemplo.html` | **Alinhado** | Exemplo completo Dr. Roberto IA (Ponta Delgada, código `med46316`, 8 etapas onboarding, red lines), TOC sticky, componentes do "agente completo" |
 
 **Pendente de produzir:** ficheiro de demonstração da saída do wizard (agente completo para o Dr. Roberto IA em cada plataforma: Gemini Gems, Custom GPT, Claude Projects, Copilot Agents) — ver item 2 dos próximos passos.
@@ -319,6 +345,7 @@ Os chats no Claude podem desaparecer por qualquer motivo técnico; a pasta local
 - Vocabulário "agente IA" em comunicação pública — rejeitada após testes (Abril 2026)
 - Narração de vídeo com actores humanos reais gerados por IA — rejeitada (uncanny valley, mata confiança)
 - Guia de instalação gratuita — rejeitada, fica a partir do 19€
+- Tratamento por *"você"* ou *"o senhor / a senhora"* em texto escrito — rejeitada em Abril 2026 (soa brasileiro ou antiquado/marcado em género). Em escrita pública usa-se 3.ª pessoa singular impessoal
 
 ---
 
@@ -348,6 +375,18 @@ Os chats no Claude podem desaparecer por qualquer motivo técnico; a pasta local
 ---
 
 ## Changelog
+
+**v2.3 · 26 Abril 2026:**
+- **Inversão da regra de tratamento.** *"Você"* e *"o senhor / a senhora"* eram regra em v2.0-v2.2 mas pertencem ao registo oral em PT-PT. Em escrita pública aplica-se 3.ª pessoa singular impessoal (padrão de sites institucionais portugueses: gov.pt, CGD, IEFP, IRN, Ordem dos Médicos)
+- Auditoria de jargão do `wizard-criar.html`:
+  - Antropomorfismos a software: *"vive dentro de"* → *"funciona dentro de"*; *"onde quer que viva"* → *"em qual destas ferramentas vai usar"*
+  - Anglicismos traduzidos: *"setup"* → *"configurar"*; *"Conversation Starters"* → *"sugestões prontas para começar a conversa"*; *"self-service"* → *"faz por conta própria"*; *"output"* → *"resultado"*; *"demo"* → *"demonstração"*
+  - Verbos técnicos disfarçados: *"integra"* → *"liga ao"*; *"em tempo real"* → *"à medida que escreve"*; *"automaticamente"* → *"sem ser preciso pedir"*; *"detecta inconsistências"* → *"avisa quando uma resposta contradiz outra"*
+  - 13 substituições de tratamento ("o senhor" → 3.ª p.s. impessoal)
+- `decisoes-proteina-ludica.md` ganha secção "Registo de tratamento (regra escrita)" com tabela de formas e exemplos concretos antes/depois
+- Adicionado a "Decisões expressamente rejeitadas": tratamento por *"você"* ou *"o senhor"* em escrita
+- **Pendente** (corrigir mais tarde): bloco do tier Assistido onde o Roberto fala em 1.ª pessoa (*"comigo"*) — aceitável a curto prazo, a rever na próxima passagem
+- Próximas adições ao `index.html` e `17-seccoes-exemplo.html` aplicam a mesma regra. Conteúdo já existente nesses ficheiros não foi reescrito nesta sessão
 
 **v2.2 · 21 Abril 2026:**
 - 3 HTMLs regenerados e **alinhados com v2.1** após auditoria (vocabulário "secretário digital" confirmado por grep: 0 ocorrências de "agente IA" em ficheiros públicos)
