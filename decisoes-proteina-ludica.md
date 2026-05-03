@@ -1,7 +1,7 @@
-# Proteína Lúdica — Registo de Decisões v2.4
+# Proteína Lúdica — Registo de Decisões v2.5
 
 > Memória viva do projecto. Anexar a novos chats para arranque sem ruído.
-> **Última actualização:** 3 Maio 2026 — Fase 1 do Internato MGF aplicada ao `index.html` v9.5 do Dr. Escriba IA (toggle SOAP/Internato no header, painel-base com 4 tabs internas, namespace `localStorage` `dx_int_*`).
+> **Última actualização:** 3 Maio 2026 — separação arquitectural: Dr. Escriba V9f e Dr. Escriba IA · Internato passam a ser **dois produtos independentes** no catálogo da `proteinaludica.com`. Abandonada a abordagem de toggle/mode de v2.4. Internato standalone fica em `dr-escriba-internato.html` neste repo até criação do repo próprio (`proteinaludica/drescriba-internato`).
 >
 > **Este ficheiro substitui o `decisoes-proteina-ludica.md` anterior.**
 
@@ -87,8 +87,8 @@ Secretários digitais estandardizados por especialidade. Nomes públicos simplif
 
 | Secretário | Público | Estado |
 |---|---|---|
-| **Dr. Escriba** | Médicos de família + urgência | Disponível (1€/dia) |
-| **Dr. Escriba · Internato** | Internos de especialidade (MGF) | **Fase 1 implementada (3 Maio 2026)** — modo dentro do Dr. Escriba IA via toggle SOAP/Internato; tabs Logbook · Avaliações · Diário · Journal Club; rubricas OM (Mini-CEX/DOPS/CbD/MSF) funcionais; restantes 3 tabs em Fase 2 |
+| **Dr. Escriba IA (V9f)** | Médicos de família + urgência | Disponível (1€/dia). Vive no repo `proteinaludica/drescribia`. Domínio: `drescribaai.proteinaludica.com`. **Produto comercial impecável e separado de tudo.** |
+| **Dr. Escriba IA · Internato** | Internos de especialidade (MGF) | **Fase 1 implementada (3 Maio 2026, v2.5)** — produto **standalone** (não modo do V9f). Inclui v9.5 SOAP completo + secção formativa em baixo com 4 tabs (Logbook · Avaliações · Diário · Journal Club). Rubricas OM (Mini-CEX/DOPS/CbD/MSF) funcionais. Restantes 3 tabs em Fase 2. Ficheiro `dr-escriba-internato.html` no repo `proteinaludica.com` aguarda mudança para repo próprio `proteinaludica/drescriba-internato`. Domínio futuro: `drescriba-internato.proteinaludica.com`. |
 | **Assistente de Clínica** | Clínicas privadas pequenas | Piloto no Funchal |
 | **RehabAssist** | Fisiatras + doentes em casa | A ser construído |
 | **Assistente de Saúde** | Pessoas com doenças crónicas | Em breve |
@@ -236,10 +236,10 @@ Organizadas em 4 blocos:
 
 | Ficheiro | Estado (3 Maio 2026) | Notas |
 |---|---|---|
-| `index.html` (institucional) | **Alinhado v2.1 — revisão de tratamento pendente** | Vocabulário "secretário digital", pirâmide dupla (Individual 0/19/49/290€ + Equipa 990€), paleta Laurissilva, FAQ 6 perguntas, Rede 2027. A passagem para 3.ª p.s. impessoal ainda não foi aplicada. **Atenção:** o `index.html` actualmente no repo `proteinaludica/proteinaludica.com` é o do **Dr. Escriba IA v9.5 + Fase 1 Internato** (uploaded para sessão de trabalho); o institucional vive separado e precisa de ser reposto antes de qualquer deploy. |
-| `wizard-criar.html` | **Alinhado v2.3** | 7 passos navegáveis (0-6), tradutor inicial, escolha de plataforma com quiz, detector RGPD, paywall diferenciado por tier, floating help para Assistido 290€. Auditoria de jargão (Abril 2026) e reescrita em 3.ª pessoa singular impessoal. |
-| `17-seccoes-exemplo.html` | **Alinhado** | Exemplo completo Dr. Roberto IA (Ponta Delgada, código `med46316`, 8 etapas onboarding, red lines), TOC sticky, componentes do "agente completo" |
-| `internato-fase1.patch` | **v2.4 (3 Maio 2026)** | Diff de 382 linhas com a Fase 1 do Internato (toggle + painel + 4 tabs + JS `dx_int_*`). Aplicar no repo `drescribia` (Dr. Escriba V9f) sobre o `index.html` v9.5 base via `git apply`. |
+| `index.html` (institucional) | **Em falta no repo — aguarda upload** | Slot reservado para a homepage institucional da `proteinaludica.com` com catálogo de produtos. Roberto irá fazer upload da versão alinhada v2.1+ (vocabulário "secretário digital", pirâmide dupla, paleta Laurissilva, FAQ, Rede 2027) ou reconstruir-se-á a partir do `decisoes.md`. A revisão para 3.ª p.s. impessoal continua pendente. |
+| `wizard-criar.html` | **Alinhado v2.3** | 7 passos navegáveis (0-6), tradutor inicial, escolha de plataforma com quiz, detector RGPD, paywall diferenciado por tier, floating help para Assistido 290€. Vive em `/criar` da `proteinaludica.com`. |
+| `dr-escriba-internato.html` | **v2.5 (3 Maio 2026)** | **Produto standalone Dr. Escriba IA · Internato.** Cópia completa do v9.5 SOAP do Dr. Escriba IA + secção formativa anexa (4 tabs: Logbook · Avaliações · Diário · Journal Club + perfil interno + rubricas OM). Aguarda criação do repo próprio `proteinaludica/drescriba-internato` para ser movido. Até lá, está no `proteinaludica.com` por conveniência operacional. |
+| `17-seccoes-exemplo.html` | **Alinhado** | Exemplo completo Dr. Roberto IA (Ponta Delgada, código `med46316`, 8 etapas onboarding, red lines), TOC sticky, componentes do "agente completo". |
 
 **Pendente de produzir:** ficheiro de demonstração da saída do wizard (agente completo para o Dr. Roberto IA em cada plataforma: Gemini Gems, Custom GPT, Claude Projects, Copilot Agents) — ver item 2 dos próximos passos.
 
@@ -377,7 +377,30 @@ Os chats no Claude podem desaparecer por qualquer motivo técnico; a pasta local
 
 ## Changelog
 
-**v2.4 · 3 Maio 2026 — Fase 1 do Internato MGF:**
+**v2.5 · 3 Maio 2026 — separação arquitectural V9f vs Internato:**
+
+- **Decisão revertida:** Internato deixa de ser modo dentro do V9f (toggle SOAP/Internato no header) e passa a ser **produto independente** com ficheiro próprio. Razão: V9f tem que ser "comercial, impecável e separado de tudo" — qualquer feature não-comercial mistura responsabilidades e atrasa releases.
+- **Catálogo `proteinaludica.com` clarificado** com 2 produtos clínicos distintos:
+  1. **Dr. Escriba IA (V9f)** — `drescribaai.proteinaludica.com`, repo `drescribia`. Para médicos especialistas. Comercial.
+  2. **Dr. Escriba IA · Internato** — `drescriba-internato.proteinaludica.com`, repo (pendente) `proteinaludica/drescriba-internato`. Para internos MGF. Inclui v9.5 SOAP completo + secção formativa.
+  3. *(`wizard-criar.html` continua à parte como ferramenta de `/criar` na `proteinaludica.com`, não é produto do catálogo clínico.)*
+- **Implementação Internato standalone (`dr-escriba-internato.html`):**
+  - Header: título "Dr. Escriba IA · Internato", subtítulo "MGF · SOAP + Logbook + Avaliações + Diário + Journal Club"
+  - Secção SOAP em cima (S/O/P/R + tudo o que existe no V9f, sem alterações funcionais)
+  - Separador visual com badge "INTERNATO MGF"
+  - Secção formativa em baixo: tabs Logbook · Avaliações · Diário · Journal Club, perfil interno (iniciais/ano/USF), rubricas OM (Mini-CEX/DOPS/CbD/MSF + escala 1-6)
+  - Ambas secções sempre visíveis, operam independentemente
+- **Removido do código:** toggle `.hdr-mode-tog` no header, função `dxModeSet`, classe CSS `body.dx-mode-internato` e regras de hide condicional, chave `dx_int_mode` (limpa via `localStorage.removeItem` no init para utilizadores que tenham testado v2.4).
+- **V9f no repo `drescribia` permanece intacto** — não recebe nada da Fase 1. O patch `internato-fase1.patch` produzido em v2.4 fica obsoleto e foi removido deste repo.
+- **Slot `index.html` da `proteinaludica.com` libertado** para upload da homepage institucional (decisão Roberto/D3a). O ficheiro do V9f que ocupava esse slot temporariamente foi renomeado para `dr-escriba-internato.html` e modificado.
+- **Não-regressão SOAP confirmada** no `dr-escriba-internato.html`: 6 funções core (`generate`, `buildSoc`, `buildO`, `buildP`, `exportPDF`, `dxNewSOAP`) zero edições; auto-save `dx_autosave_v1` inalterado; modais (Templates, Histórico, Médico, Pré-visualizar) inalterados.
+- **Pendentes em aberto:**
+  - Criar repo `proteinaludica/drescriba-internato` e mover `dr-escriba-internato.html` (Roberto)
+  - Upload do `index.html` institucional da `proteinaludica.com` (Roberto)
+  - Configurar DNS de `drescriba-internato.proteinaludica.com` apontado ao novo deploy
+  - Fase 2 do Internato: CRUD nos 3 stubs (Logbook, Diário, Journal Club) + histórico filtrável e exportação PDF nas Avaliações
+
+**v2.4 · 3 Maio 2026 — Fase 1 do Internato MGF (revertida em v2.5):**
 
 - **Dr. Escriba IA · Internato** passa do estado "produto distinto, em breve" para **esqueleto funcional implementado** sobre o `index.html` v9.5 SOAP. Decisão de não criar produto separado: o Internato é um **modo** dentro do mesmo app (toggle no header), partilhando perfil, auto-save e infra-estrutura do Dr. Escriba IA core.
 - **Toggle SOAP/Internato** no `.hdr-ctrls` — pill segmentado amber/copper. Modo persistido em `localStorage.dx_int_mode`. Quando Internato activo, painéis S/O/P/R são escondidos via classe `body.dx-mode-internato`; auto-save `dx_autosave_v1` do SOAP fica intacto.
@@ -391,6 +414,7 @@ Os chats no Claude podem desaparecer por qualquer motivo técnico; a pasta local
 - **Patch `internato-fase1.patch`** (382 linhas, +351 -1 sobre `index.html`) gerado para aplicação no repo `drescribia` (onde reside a versão produtiva do Dr. Escriba IA — Dr. Escriba V9f). PR aberto em `proteinaludica.com#3` para tracking; merge no `drescribia` faz-se via `git apply` do raw URL do patch.
 - **Ramificação operacional:** `proteinaludica.com` ganhou temporariamente uma cópia do `index.html` do Dr. Escriba IA para servir de workspace de edição. Antes de qualquer deploy de `proteinaludica.com` para Vercel, é preciso repor o `index.html` institucional e mover o Dr. Escriba IA para o seu domínio (`drescribaai.proteinaludica.com`).
 - **Pendente para Fase 2:** CRUD nos 3 stubs (Logbook com tipos de acto OM, Diário com ditado, Journal Club com DOI/PubMed e templates CASP/AMSTAR), histórico filtrável e exportação no tab Avaliações (PDF para reunião com tutor), genograma do interno opcional.
+- **Nota retrospectiva v2.5:** A abordagem toggle/mode foi revertida em v2.5 porque misturava responsabilidades (V9f comercial + Internato formativo no mesmo ficheiro). Internato passa a ficheiro independente com cópia completa do v9.5 SOAP e secção formativa em baixo. Ler v2.5 para arquitectura actual.
 
 **v2.3 · 26 Abril 2026:**
 - **Inversão da regra de tratamento.** *"Você"* e *"o senhor / a senhora"* eram regra em v2.0-v2.2 mas pertencem ao registo oral em PT-PT. Em escrita pública aplica-se 3.ª pessoa singular impessoal (padrão de sites institucionais portugueses: gov.pt, CGD, IEFP, IRN, Ordem dos Médicos)

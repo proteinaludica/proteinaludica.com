@@ -5,10 +5,10 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta http-equiv="Content-Security-Policy" content="default-src 'self' data: blob:; script-src 'self' 'unsafe-inline' https://cdnjs.cloudflare.com; style-src 'self' 'unsafe-inline'; img-src 'self' data: blob:; connect-src 'self' data: blob: https://cdnjs.cloudflare.com https://tessdata.projectnaptha.com; worker-src 'self' blob:; font-src 'self' data:; frame-ancestors 'none'; base-uri 'self'; form-action 'self'">
 <meta name="referrer" content="no-referrer">
-<meta name="description" content="Dr. Escriba IA — assistente documental SOAP (não clínico). Dados ficam localmente no browser.">
+<meta name="description" content="Dr. Escriba IA · Internato MGF — assistente formativo (não clínico) para internos de Medicina Geral e Familiar. SOAP + Logbook + Avaliações OM + Diário + Journal Club. Dados ficam localmente no browser.">
 <meta name="theme-color" content="#1a1916">
 <link rel="manifest" id="pwa-manifest">
-<title>Dr. Escriba IA · SOAP</title>
+<title>Dr. Escriba IA · Internato MGF</title>
 <style>
 *{box-sizing:border-box;margin:0;padding:0}
 body{font-family:system-ui,-apple-system,'Segoe UI',sans-serif;background:#f1f0ed;color:#1a1916;font-size:15px;min-height:100vh}
@@ -447,24 +447,16 @@ body.dark .dx-today{background:#1e2235;border-color:#2a2d40;color:#dde1f0}
 body.dark .dx-today:hover{background:#2a3050;color:#fff}
 
 /* ═══════════════════════════════════════════════════════════════════
- * INTERNATO MGF — Fase 1 (esqueleto)
- * Toggle SOAP/Internato no header + painel-base com 4 tabs internas:
- * Logbook, Avaliações, Diário, Journal Club. Paleta amber/copper para
- * distinguir de S/O/P sem partir o tema actual. Namespace dx_int_*.
+ * INTERNATO MGF — produto standalone (não-toggle)
+ * SOAP (v9.5) + 4 secções formativas (Logbook, Avaliações, Diário,
+ * Journal Club) sempre visíveis. Layout em duas zonas: SOAP em cima
+ * (S/O/P/R), Internato em baixo. Paleta amber/copper para distinguir
+ * a zona formativa sem partir o tema clínico. Namespace dx_int_*.
  * ═══════════════════════════════════════════════════════════════════ */
-.hdr-mode-tog{display:inline-flex;background:rgba(255,255,255,0.08);border:1px solid rgba(255,255,255,0.2);border-radius:6px;overflow:hidden;font-size:12px;font-family:inherit;margin-right:4px}
-.hdr-mode-tog button{padding:4px 12px;background:transparent;color:#bbb;border:none;cursor:pointer;font:inherit;font-size:12px;letter-spacing:0.2px;transition:all .15s}
-.hdr-mode-tog button:hover{color:#fff}
-.hdr-mode-tog button.on{background:#bda060;color:#1a1916;font-weight:600}
-.hdr-mode-tog button:focus-visible{outline:2px solid #2563eb;outline-offset:1px}
-
-body.dx-mode-internato .tabs[aria-label="Secções SOAP"]{display:none !important}
-body.dx-mode-internato #panel-s,
-body.dx-mode-internato #panel-o,
-body.dx-mode-internato #panel-p,
-body.dx-mode-internato #panel-r{display:none !important}
-body:not(.dx-mode-internato) #tabs-internato,
-body:not(.dx-mode-internato) #panel-internato{display:none !important}
+.int-section-divider{margin:24px -14px 14px;padding:14px 14px 0;border-top:2px solid #e5cf8c;background:linear-gradient(180deg,rgba(251,243,218,0.4) 0%,transparent 100%);position:relative}
+.int-section-divider::before{content:'INTERNATO MGF';position:absolute;top:-9px;left:50%;transform:translateX(-50%);background:#f1f0ed;padding:2px 14px;font-family:'SF Mono',Consolas,monospace;font-size:10px;font-weight:700;letter-spacing:0.18em;color:#7a5c20;border:1px solid #e5cf8c;border-radius:10px}
+body.dark .int-section-divider{border-top-color:#5a4020;background:linear-gradient(180deg,rgba(42,32,16,0.5) 0%,transparent 100%)}
+body.dark .int-section-divider::before{background:#0f1117;color:#dcc480;border-color:#5a4020}
 
 #tabs-internato{display:flex;background:#fff;border-bottom:1px solid var(--bd)}
 #tabs-internato .tab-int{padding:11px 18px 9px;font-size:13px;color:var(--muted);cursor:pointer;border-bottom:2px solid transparent;display:flex;align-items:center;gap:6px;user-select:none;transition:color .1s}
@@ -537,14 +529,10 @@ body.dark .om-fld textarea:focus{border-color:#bda060;background:#1a1d2e}
 <div style="border:1px solid var(--bd);border-radius:10px;overflow:hidden">
 <div class="hdr" role="banner">
   <div>
-    <div class="hdr-t" id="hdr-title">Dr. Escriba IA</div>
-    <div class="hdr-s" id="hdr-sub">SOAP</div>
+    <div class="hdr-t" id="hdr-title">Dr. Escriba IA · Internato</div>
+    <div class="hdr-s" id="hdr-sub">MGF · SOAP + Logbook + Avaliações + Diário + Journal Club</div>
   </div>
   <div class="hdr-ctrls" role="toolbar" aria-label="Controlos da aplicação">
-    <div class="hdr-mode-tog" id="hdr-mode-tog" role="tablist" aria-label="Modo da aplicação">
-      <button type="button" data-mode="soap" class="on" onclick="dxModeSet('soap')" role="tab" aria-selected="true" title="Modo SOAP — registo clínico">SOAP</button>
-      <button type="button" data-mode="internato" onclick="dxModeSet('internato')" role="tab" aria-selected="false" title="Modo Internato MGF — logbook, avaliações, diário, journal club">Internato</button>
-    </div>
     <span class="save-ind" id="save-ind" title="Estado da gravação local"><span class="dot"></span><span id="save-ind-tx">guardado</span></span>
     <span class="hdr-btn" id="btn-new-soap" role="button" tabindex="0" onclick="dxNewSOAP()" title="Limpar tudo e iniciar novo SOAP">＋ Novo SOAP</span>
     <span class="hdr-btn" id="btn-tpl" role="button" tabindex="0" onclick="dxOpenTemplates()" title="Templates guardados">📋 Templates</span>
@@ -3162,10 +3150,12 @@ body.dark .om-fld textarea:focus{border-color:#bda060;background:#1a1d2e}
 </div>
 
 <!-- ═══════════════════════════════════════════════════════════════════
-     INTERNATO MGF — Fase 1 (esqueleto)
+     INTERNATO MGF — secção formativa (sempre visível, abaixo do SOAP)
      Painel-base com 4 tabs internas + perfil interno + rubricas OM.
-     Visível apenas quando body.dx-mode-internato (ver dxModeSet).
+     Tabs operam de forma independente das tabs SOAP em cima — clicar
+     numa tab Internato muda o painel formativo sem afectar o SOAP.
      ═══════════════════════════════════════════════════════════════════ -->
+<div class="int-section-divider" aria-hidden="true"></div>
 <div id="tabs-internato" role="tablist" aria-label="Secções Internato MGF">
   <div class="tab-int on" id="tab-int-log" role="tab" tabindex="0" aria-selected="true" aria-controls="pi-log" onclick="dxIntTab('log')"><div class="tib" aria-hidden="true">L</div>Logbook</div>
   <div class="tab-int" id="tab-int-aval" role="tab" tabindex="-1" aria-selected="false" aria-controls="pi-aval" onclick="dxIntTab('aval')"><div class="tib" aria-hidden="true">A</div>Avaliações</div>
@@ -8893,15 +8883,14 @@ function relAdd(el, kind){
 </script>
 
 <!-- ═══════════════════════════════════════════════════════════════════
-     INTERNATO MGF — Fase 1 (esqueleto) — JS
+     INTERNATO MGF — secção formativa, JS
      Não toca em nada do v9.5 SOAP. Auto-save dx_autosave_v1 inalterado.
-     Toggle, tabs, perfil, rubrica OM. Namespace localStorage dx_int_*.
+     Tabs, perfil, rubrica OM. Namespace localStorage dx_int_*.
      ═══════════════════════════════════════════════════════════════════ -->
 <script>
 (function(){
   'use strict';
 
-  var KEY_MODE       = 'dx_int_mode';
   var KEY_TAB        = 'dx_int_tab';
   var KEY_PROF_INIT  = 'dx_int_profile_initials';
   var KEY_PROF_YEAR  = 'dx_int_profile_year';
@@ -8914,24 +8903,8 @@ function relAdd(el, kind){
   function lsGet(k, dflt){ try { var v = localStorage.getItem(k); return v == null ? dflt : v; } catch(e){ return dflt; } }
   function lsSet(k, v){ try { localStorage.setItem(k, v); } catch(e){} }
 
-  // ── Modo (SOAP / Internato) ─────────────────────────────────────────
-  window.dxModeSet = function(mode){
-    if (mode !== 'soap' && mode !== 'internato') return;
-    var b = document.body;
-    if (mode === 'internato') b.classList.add('dx-mode-internato');
-    else b.classList.remove('dx-mode-internato');
-    lsSet(KEY_MODE, mode);
-    var tog = document.getElementById('hdr-mode-tog');
-    if (tog) {
-      tog.querySelectorAll('button').forEach(function(btn){
-        var on = btn.dataset.mode === mode;
-        btn.classList.toggle('on', on);
-        btn.setAttribute('aria-selected', on ? 'true' : 'false');
-      });
-    }
-    var sub = document.getElementById('hdr-sub');
-    if (sub) sub.textContent = mode === 'internato' ? 'Internato MGF' : 'SOAP';
-  };
+  // Limpa eventual chave dx_int_mode legada (toggle abandonado em v2.5)
+  try { localStorage.removeItem('dx_int_mode'); } catch(e){}
 
   // ── Tabs internas ───────────────────────────────────────────────────
   var INT_TABS = ['log','aval','dia','jc'];
@@ -9047,7 +9020,6 @@ function relAdd(el, kind){
     dxIntProfileLoad();
     dxOMRestore();
     dxIntAvalCount();
-    window.dxModeSet(lsGet(KEY_MODE, 'soap'));
     window.dxIntTab(lsGet(KEY_TAB, 'log'));
   });
 })();
