@@ -205,7 +205,7 @@
 
   .medida { background: var(--surface); border-top: 0.5px solid var(--border); }
   .medida-tag { display: inline-block; font-family: var(--font-mono); font-size: 11px; color: var(--accent); background: var(--accent-light); padding: 5px 12px; border-radius: 3px; letter-spacing: 0.05em; margin-bottom: 1rem; }
-  .tiers-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.25rem; margin-top: 4rem; }
+  .tiers-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 1.25rem; margin-top: 4rem; }
   .tier { background: var(--bg); border: 0.5px solid var(--border); border-radius: 12px; padding: 2rem; display: flex; flex-direction: column; position: relative; }
   .tier.recommended { background: var(--ink); color: white; border-color: var(--ink); }
   .tier.recommended::before { content: 'Recomendado'; position: absolute; top: -12px; left: 2rem; background: var(--accent-glow); color: var(--ink); font-family: var(--font-mono); font-size: 10px; padding: 4px 12px; border-radius: 3px; letter-spacing: 0.1em; text-transform: uppercase; font-weight: 500; }
@@ -228,8 +228,16 @@
   .tier.recommended .tier-cta-main:hover { background: white; }
   .tier-cta-ghost { background: transparent; color: var(--ink); border: 0.5px solid var(--border-strong); }
   .tier-cta-ghost:hover { border-color: var(--accent); color: var(--accent); }
-  .madeira-note { margin-top: 2rem; padding: 1.25rem 1.5rem; background: var(--accent-light); border-radius: 8px; font-size: 14px; color: var(--accent); display: flex; align-items: center; gap: 10px; line-height: 1.5; }
-  .madeira-note strong { font-weight: 500; }
+  .equipa-bloco { margin-top: 3rem; }
+  .equipa-card { background: var(--surface); border: 0.5px solid var(--border); border-radius: 12px; padding: 2.5rem; display: grid; grid-template-columns: 1fr auto; gap: 2.5rem; align-items: center; }
+  .equipa-tag { display: inline-block; font-family: var(--font-mono); font-size: 11px; color: var(--amber-dark); background: var(--amber-light); padding: 5px 12px; border-radius: 3px; letter-spacing: 0.05em; margin-bottom: 1rem; }
+  .equipa-card h3 { font-family: var(--font-head); font-size: 1.7rem; font-weight: 400; margin-bottom: 0.6rem; letter-spacing: -0.01em; line-height: 1.15; }
+  .equipa-desc { font-size: 15px; color: var(--ink2); line-height: 1.6; max-width: 60ch; }
+  .equipa-actions { display: flex; flex-direction: column; align-items: flex-end; gap: 1rem; min-width: 180px; }
+  .equipa-price { font-family: var(--font-head); font-size: 2rem; color: var(--ink); letter-spacing: -0.02em; line-height: 1; text-align: right; }
+  .equipa-price-sub { display: block; font-family: var(--font-mono); font-size: 10px; color: var(--muted); letter-spacing: 0.05em; margin-top: 4px; font-weight: normal; }
+  .equipa-cta { display: inline-block; padding: 11px 22px; background: var(--ink); color: white; border-radius: 6px; font-family: var(--font-body); font-size: 14px; font-weight: 500; text-decoration: none; transition: background 0.2s; white-space: nowrap; }
+  .equipa-cta:hover { background: var(--ink2); }
 
   .faq { background: var(--bg2); }
   .faq-list { margin-top: 3rem; max-width: 800px; }
@@ -295,6 +303,9 @@
   .footer-bottom a { color: rgba(255,255,255,0.5); text-decoration: none; }
   .footer-bottom a:hover { color: rgba(255,255,255,0.9); }
 
+  @media (max-width: 1080px) {
+    .tiers-grid { grid-template-columns: repeat(2, 1fr); }
+  }
   @media (max-width: 860px) {
     nav { padding: 1rem 1.25rem; }
     .nav-links li:not(:last-child) { display: none; }
@@ -304,6 +315,9 @@
     .portas { grid-template-columns: 1fr; }
     .como-grid, .eg-grid { grid-template-columns: 1fr; }
     .tiers-grid { grid-template-columns: 1fr; }
+    .equipa-card { grid-template-columns: 1fr; gap: 1.5rem; padding: 2rem; }
+    .equipa-actions { align-items: flex-start; min-width: 0; }
+    .equipa-price { text-align: left; }
     .empresa-grid, .contact-inner { grid-template-columns: 1fr; gap: 2.5rem; }
     .catalogo-grid { grid-template-columns: 1fr; }
     .footer-inner { grid-template-columns: 1fr 1fr; gap: 2rem; }
@@ -369,11 +383,11 @@
       <a class="porta porta-b" href="/criar">
         <div class="porta-label">Opção 2 · Faça por conta própria</div>
         <div class="porta-title">Quero tentar<br>sozinho</div>
-        <div class="porta-desc">Para quem já mexe com computadores. Respondemos a 17 perguntas simples. Recebe tudo pronto para pôr a funcionar.</div>
+        <div class="porta-desc">Para quem já mexe com computadores. Responde a 17 perguntas simples. Recebe tudo pronto para pôr a funcionar.</div>
         <div class="porta-foot">
           <div class="porta-price">
-            19€
-            <span class="porta-price-sub">Só pagos se gostar · 29€ normal</span>
+            a partir de 19€
+            <span class="porta-price-sub">19€ Básico · 49€ com IA a guiar</span>
           </div>
           <span class="porta-arrow">Começar →</span>
         </div>
@@ -569,51 +583,75 @@
     <div class="tiers-grid">
 
       <div class="tier">
-        <div class="tier-name">Sozinho</div>
-        <div class="tier-sub">Faz por conta própria com o nosso modelo</div>
+        <div class="tier-name">Grátis</div>
+        <div class="tier-sub">Faz por conta própria</div>
         <div class="tier-price">0€</div>
-        <div class="tier-price-note">Grátis</div>
+        <div class="tier-price-note">Sem ajuda humana</div>
         <ul class="tier-list">
-          <li>Um modelo com 17 perguntas</li>
-          <li>Vídeo de 10 minutos a explicar</li>
-          <li>Pode fazer ao seu ritmo</li>
-          <li>Sem ninguém a acompanhar</li>
+          <li>17 perguntas para responder</li>
+          <li>Configuração entregue para colar</li>
+          <li>Sem guia de instalação</li>
+          <li>Sem acompanhamento</li>
         </ul>
         <a href="/criar" class="tier-cta tier-cta-ghost">Começar grátis →</a>
       </div>
 
+      <div class="tier">
+        <div class="tier-name">Básico</div>
+        <div class="tier-sub">Self-service com guia</div>
+        <div class="tier-price">19€</div>
+        <div class="tier-price-note">Pagamento único</div>
+        <ul class="tier-list">
+          <li>Tudo o que tem o Grátis</li>
+          <li>Guia de instalação na sua ferramenta</li>
+          <li>PDF formatado para arquivo</li>
+          <li>Lista de verificação RGPD</li>
+        </ul>
+        <a href="/criar" class="tier-cta tier-cta-ghost">Começar →</a>
+      </div>
+
       <div class="tier recommended">
-        <div class="tier-name">Com a nossa ajuda</div>
-        <div class="tier-sub">Conversa de 1 hora</div>
+        <div class="tier-name">Premium</div>
+        <div class="tier-sub">Com IA a guiar o preenchimento</div>
+        <div class="tier-price">49€</div>
+        <div class="tier-price-note">Pagamento único</div>
+        <ul class="tier-list">
+          <li>Tudo o que tem o Básico</li>
+          <li>IA acompanha o preenchimento das 17 perguntas</li>
+          <li>Sugestões à medida que escreve</li>
+          <li>Avisa quando uma resposta contradiz outra</li>
+        </ul>
+        <a href="/criar" class="tier-cta tier-cta-main">Começar →</a>
+      </div>
+
+      <div class="tier">
+        <div class="tier-name">Assistido</div>
+        <div class="tier-sub">Conversa de 1 hora connosco</div>
         <div class="tier-price">290€</div>
-        <div class="tier-price-note">Preço Madeira · primeiros 10 clientes</div>
+        <div class="tier-price-note">Madeira · primeiros 10 · 490€ depois</div>
         <ul class="tier-list">
           <li>Uma chamada de 1 hora connosco</li>
           <li>Apanhamos tudo o que disser</li>
           <li>Entregamos o secretário pronto</li>
           <li>14 dias a tirar dúvidas por email</li>
         </ul>
-        <a href="#contacto" class="tier-cta tier-cta-main">Quero falar →</a>
-      </div>
-
-      <div class="tier">
-        <div class="tier-name">Feito por nós</div>
-        <div class="tier-sub">Nós instalamos tudo</div>
-        <div class="tier-price">990€</div>
-        <div class="tier-price-note">Preço Madeira · primeiros 10 clientes</div>
-        <ul class="tier-list">
-          <li>Tudo o que tem o nível acima</li>
-          <li>Instalamos no seu computador</li>
-          <li>Ensinamos-lhe a usar (90 min)</li>
-          <li>30 dias de apoio, qualquer dúvida</li>
-        </ul>
         <a href="#contacto" class="tier-cta tier-cta-ghost">Quero falar →</a>
       </div>
 
     </div>
 
-    <div class="madeira-note">
-      <strong>●</strong>&nbsp;&nbsp;<strong>Preço de abertura na Madeira.</strong>&nbsp; É para os 10 primeiros clientes aqui da ilha. Depois volta ao preço normal (490€ e 1.490€).
+    <div class="equipa-bloco">
+      <div class="equipa-card">
+        <div>
+          <span class="equipa-tag">Para a sua equipa</span>
+          <h3>Equipa</h3>
+          <p class="equipa-desc">Para clínicas, escritórios e gabinetes — qualquer profissão, não só saúde. Um secretário "mãe" com regras comuns + versões adaptadas a cada papel (médico, enfermeira, recepção; advogado, associado, secretária; etc.).</p>
+        </div>
+        <div class="equipa-actions">
+          <div class="equipa-price">desde 990€<span class="equipa-price-sub">Preço provisório · ajustado ao primeiro projecto real</span></div>
+          <a href="#contacto" class="equipa-cta">Falar connosco →</a>
+        </div>
+      </div>
     </div>
   </div>
 </section>
@@ -808,8 +846,10 @@
           <div class="form-row">
             <label for="ci-tipo">O que lhe interessa?</label>
             <select id="ci-tipo">
-              <option>Quero um secretário pronto a usar (desde 290€)</option>
-              <option>Quero tentar sozinho (19€)</option>
+              <option>Quero um secretário pronto a usar (Assistido 290€)</option>
+              <option>Quero tentar sozinho (Básico 19€)</option>
+              <option>Quero a versão guiada por IA (Premium 49€)</option>
+              <option>Quero para a minha clínica/escritório (Equipa 990€)</option>
               <option>Interessa-me um dos já prontos</option>
               <option>Sou de outra profissão</option>
               <option>Só quero saber mais</option>
